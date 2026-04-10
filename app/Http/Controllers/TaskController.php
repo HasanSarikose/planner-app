@@ -8,7 +8,7 @@ use App\Models\Task;
 class TaskController extends Controller
 {
     public function index() {
-        return view('planner');
+        return view('planner.index');
     }
 
     // 2. Tüm görevleri JSON olarak ver (JavaScript buraya soracak)

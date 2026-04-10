@@ -1,20 +1,15 @@
 {
-    "name": "Kişisel Planlayıcı",
+    "name": "Planner",
     "short_name": "Planner",
-    "start_url": "/",
+    "description": "Kişisel Görev Planlayıcı",
+    "start_url": "/planner",
     "display": "standalone",
     "background_color": "#f4f7f6",
     "theme_color": "#2c3e50",
+    "orientation": "portrait",
     "icons": [
-        {
-            "src": "/icon-192.png",
-            "sizes": "192x192",
-            "type": "image/png"
-        },
-        {
-            "src": "/icon-512.png",
-            "sizes": "512x512",
-            "type": "image/png"
-        }
+        { "src": "/icons/icon-192.png", "sizes": "192x192", "type": "image/png" },
+        { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png" },
+        { "src": "/icons/icon-512.png", "sizes": "512x512", "type": "image/png", "purpose": "maskable" }
     ]
 }
