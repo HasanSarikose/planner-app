@@ -1,0 +1,161 @@
+/* ════════════════════════════
+   HESAP EKRANI
+════════════════════════════ */
+.account-grid {
+    display: grid;
+    grid-template-columns: 280px 1fr;
+    grid-template-rows: auto 1fr;
+    gap: 16px;
+    flex: 1;
+    overflow-y: auto;
+    align-content: start;
+}
+
+.account-card {
+    background: white;
+    border-radius: 14px;
+    padding: 24px;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.07);
+    border: 1px solid #f0f0f0;
+}
+
+.account-card-title {
+    font-size: 14px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin-bottom: 18px;
+    padding-bottom: 10px;
+    border-bottom: 1px solid #f0f0f0;
+}
+
+/* Profil kartı */
+.profile-card {
+    grid-row: 1 / 3;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    gap: 12px;
+}
+
+.account-avatar {
+    width: 80px;
+    height: 80px;
+    border-radius: 50%;
+    background: linear-gradient(135deg, #4a90e2, #2c3e50);
+    color: white;
+    font-size: 32px;
+    font-weight: 700;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    box-shadow: 0 4px 15px rgba(74,144,226,0.3);
+}
+
+.account-name {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+}
+
+.account-since {
+    font-size: 13px;
+    color: #95a5a6;
+}
+
+/* İstatistikler */
+.stats-card { grid-column: 2; }
+
+.stats-grid {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 12px;
+}
+
+.stat-item {
+    background: #f8f9fa;
+    border-radius: 10px;
+    padding: 16px 10px;
+    text-align: center;
+}
+
+.stat-number {
+    font-size: 28px;
+    font-weight: 800;
+    color: #2c3e50;
+    line-height: 1;
+    margin-bottom: 6px;
+}
+
+.stat-label {
+    font-size: 11px;
+    color: #95a5a6;
+    font-weight: 600;
+    text-transform: uppercase;
+    letter-spacing: 0.3px;
+}
+
+/* Şifre kartı */
+.password-card { grid-column: 2; }
+
+.pw-form-group {
+    margin-bottom: 12px;
+}
+
+.pw-form-group label {
+    display: block;
+    font-size: 12px;
+    font-weight: 600;
+    color: #7f8c8d;
+    margin-bottom: 5px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+}
+
+.pw-form-group input {
+    width: 100%;
+    padding: 10px 14px;
+    border: 1.5px solid #eee;
+    border-radius: 8px;
+    font-size: 14px;
+    transition: border-color 0.2s;
+    box-sizing: border-box;
+    font-family: inherit;
+}
+
+.pw-form-group input:focus {
+    outline: none;
+    border-color: #4a90e2;
+}
+
+.pw-btn {
+    width: 100%;
+    padding: 12px;
+    background: #2c3e50;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 14px;
+    font-weight: 700;
+    cursor: pointer;
+    margin-top: 6px;
+    transition: background 0.2s;
+}
+
+.pw-btn:hover { background: #1a252f; }
+.pw-btn:active { transform: scale(0.98); }
+
+/* Mobil */
+@media (max-width: 768px) {
+    .account-grid {
+        grid-template-columns: 1fr;
+        grid-template-rows: auto;
+    }
+
+    .profile-card { grid-row: auto; }
+    .stats-card { grid-column: 1; }
+    .password-card { grid-column: 1; }
+
+    .stats-grid { grid-template-columns: repeat(2, 1fr); }
+}

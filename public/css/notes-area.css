@@ -1,0 +1,255 @@
+/* ════════════════════════════
+   NOTLAR ANA ALANI
+════════════════════════════ */
+.notes-area-header {
+    margin-bottom: 16px;
+    flex-shrink: 0;
+}
+
+.notes-area-title-row {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-bottom: 12px;
+}
+
+.notes-area-title {
+    font-size: 20px;
+    font-weight: 700;
+    color: #2c3e50;
+    margin: 0;
+}
+
+.notes-view-toggle {
+    display: flex;
+    gap: 4px;
+    background: #f4f7f6;
+    padding: 4px;
+    border-radius: 8px;
+}
+
+.view-btn {
+    background: none;
+    border: none;
+    padding: 6px 12px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 16px;
+    color: #95a5a6;
+    transition: all 0.2s;
+}
+
+.view-btn.active {
+    background: white;
+    color: #2c3e50;
+    box-shadow: 0 1px 3px rgba(0,0,0,0.1);
+}
+
+.notes-area-filters {
+    display: flex;
+    gap: 6px;
+    flex-wrap: wrap;
+}
+
+.area-filter-btn {
+    padding: 6px 14px;
+    border: 1.5px solid #eee;
+    background: white;
+    color: #7f8c8d;
+    border-radius: 20px;
+    font-size: 12px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: all 0.2s;
+}
+
+.area-filter-btn.active {
+    background: #2c3e50;
+    color: white;
+    border-color: #2c3e50;
+}
+
+.area-filter-btn.high.active {
+    background: #e74c3c;
+    border-color: #e74c3c;
+}
+
+/* ── KART GÖRÜNÜMÜ ── */
+.notes-card-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
+    gap: 14px;
+    overflow-y: auto;
+    flex: 1;
+    align-content: start;
+    padding-bottom: 20px;
+}
+
+.note-area-card {
+    background: white;
+    border-radius: 12px;
+    padding: 16px;
+    box-shadow: 0 2px 8px rgba(0,0,0,0.07);
+    border: 1px solid #f0f0f0;
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    transition: box-shadow 0.2s;
+}
+
+.note-area-card:hover { box-shadow: 0 4px 16px rgba(0,0,0,0.1); }
+.note-area-card.done { opacity: 0.6; }
+
+.note-area-card-header {
+    display: flex;
+    align-items: flex-start;
+    gap: 10px;
+    flex-wrap: wrap;
+}
+
+.note-area-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    flex-shrink: 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s;
+    margin-top: 1px;
+}
+
+.note-area-check.checked {
+    background: #27ae60;
+    border-color: #27ae60;
+    color: white;
+}
+
+.note-area-title-text {
+    flex: 1;
+    font-weight: 700;
+    font-size: 14px;
+    color: #2c3e50;
+    line-height: 1.4;
+}
+
+.note-area-priority-badge {
+    font-size: 10px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.note-area-desc {
+    font-size: 13px;
+    color: #555;
+    line-height: 1.5;
+    background: #f8f9fa;
+    padding: 10px;
+    border-radius: 8px;
+    min-height: 40px;
+}
+
+.note-area-desc.empty {
+    color: #bdc3c7;
+    cursor: pointer;
+    font-style: italic;
+}
+.note-area-desc.empty:hover { background: #f0f4ff; color: #4a90e2; }
+
+.note-area-footer {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 4px;
+}
+
+.note-area-date {
+    font-size: 11px;
+    color: #bdc3c7;
+}
+
+.note-area-btn {
+    border: none;
+    padding: 5px 10px;
+    border-radius: 6px;
+    cursor: pointer;
+    font-size: 12px;
+    font-weight: 600;
+    transition: opacity 0.2s;
+}
+.note-area-btn:active { opacity: 0.7; }
+.note-area-btn.edit { background: #eaf3fb; color: #2980b9; }
+.note-area-btn.delete { background: #fdf2f2; color: #e74c3c; }
+
+/* ── TABLO GÖRÜNÜMÜ ── */
+.notes-table {
+    width: 100%;
+    border-collapse: collapse;
+    font-size: 13px;
+}
+
+.notes-table thead th {
+    text-align: left;
+    padding: 10px 12px;
+    background: #f8f9fa;
+    color: #7f8c8d;
+    font-size: 11px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+    border-bottom: 2px solid #eee;
+    font-weight: 700;
+}
+
+.notes-table tbody td {
+    padding: 12px;
+    border-bottom: 1px solid #f0f0f0;
+    vertical-align: middle;
+}
+
+.notes-table tbody tr:hover td { background: #fafafa; }
+.table-row-done td { opacity: 0.5; }
+
+.table-check {
+    width: 22px;
+    height: 22px;
+    border-radius: 50%;
+    border: 2px solid #ddd;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 12px;
+    transition: all 0.2s;
+}
+
+.table-check.checked {
+    background: #27ae60;
+    border-color: #27ae60;
+    color: white;
+}
+
+.priority-badge {
+    font-size: 11px;
+    font-weight: 700;
+    padding: 3px 8px;
+    border-radius: 10px;
+    white-space: nowrap;
+}
+
+.strikethrough { text-decoration: line-through; color: #95a5a6 !important; }
+
+/* Mobil */
+@media (max-width: 768px) {
+    .notes-card-grid {
+        grid-template-columns: 1fr;
+    }
+    .notes-table thead th:nth-child(4),
+    .notes-table tbody td:nth-child(4) {
+        display: none;
+    }
+}

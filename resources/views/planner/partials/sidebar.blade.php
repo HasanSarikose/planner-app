@@ -3,7 +3,6 @@
 
         <div class="sidebar-header">
             <h3 id="formTitle" class="sidebar-title">Yeni Görev</h3>
-            <button onclick="handleLogout()" class="btn-logout">🚪 Çıkış</button>
         </div>
 
         <input type="hidden" id="editingTaskId">

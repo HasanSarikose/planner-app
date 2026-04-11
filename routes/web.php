@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\TaskController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\NoteController;
+use App\Http\Controllers\AccountController;
 
 Route::get('/', function () {
     return auth()->check() ? redirect('/planner') : redirect('/login');
@@ -30,4 +31,9 @@ Route::middleware('auth')->group(function () {
     Route::post('/notes', [NoteController::class, 'store']);
     Route::patch('/notes/{id}/toggle', [NoteController::class, 'toggle']);
     Route::delete('/notes/{id}', [NoteController::class, 'destroy']);
+    Route::patch('/notes/{id}', [NoteController::class, 'update']);
+
+    // Account
+    Route::get('/account/info', [AccountController::class, 'info']);
+    Route::post('/account/password', [AccountController::class, 'changePassword']);
 });

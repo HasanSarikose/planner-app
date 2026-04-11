@@ -37,4 +37,12 @@ class NoteController extends Controller
         Note::where('id', $id)->where('user_id', auth()->id())->delete();
         return response()->json(['success' => true]);
     }
+
+    public function update(Request $request, $id) {
+        $note = Note::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        $note->update([
+            'description' => $request->description,
+        ]);
+        return response()->json($note);
+    }
 }

@@ -15,6 +15,8 @@
     <meta name="theme-color" content="#2c3e50">
 
     <link rel="stylesheet" href="/css/planner.css">
+    <link rel="stylesheet" href="/css/notes-area.css">
+    <link rel="stylesheet" href="/css/account-area.css">
 </head>
 <body>
 
@@ -27,35 +29,66 @@
 
     {{-- Alt sekme navigasyonu --}}
     <div class="tab-nav">
-        <button class="tab-btn active" onclick="switchTab('takvim', this)">
+        <button class="tab-btn active" id="nav-takvim" onclick="switchTab('takvim', this)">
             <span class="tab-icon">🗓️</span>
             <span>Takvim</span>
         </button>
-        <button class="tab-btn" onclick="switchTab('notlar', this)">
+        <button class="tab-btn" id="nav-notlar" onclick="switchTab('notlar', this)">
             <span class="tab-icon">💡</span>
             <span>Aklımdakiler</span>
         </button>
     </div>
 
+    {{-- Hesap butonu --}}
+    <button onclick="switchMain('account')" class="account-strip">
+        👤 Hesabım
+    </button>
+
+    {{-- Çıkış şeridi --}}
+    <button onclick="handleLogout()" class="logout-strip">
+        🚪 Çıkış Yap
+    </button>
+
 </div>
 
-{{-- ── TAKVİM ALANI ── --}}
+{{-- ── ANA ALANLAR ── --}}
 @include('planner.partials.calendar')
+@include('planner.partials.notes-area')
+@include('planner.partials.account-area')
 
 {{-- ── MODALLER ── --}}
 @include('planner.modals.emergency')
 
-{{-- JS dosyaları --}}
 <script>
-    // Global CSRF token — tüm JS dosyaları kullanır
     window.CSRF = document.querySelector('meta[name="csrf-token"]').getAttribute('content');
 
-    // Sekme yönetimi
+    // Aktif ana alan
+    let activeMain = 'calendar';
+
+    // Sidebar sekme yönetimi
     function switchTab(name, btn) {
         document.querySelectorAll('.tab-content').forEach(el => el.classList.remove('active'));
         document.querySelectorAll('.tab-btn').forEach(el => el.classList.remove('active'));
         document.getElementById('tab-' + name).classList.add('active');
         btn.classList.add('active');
+
+        // Takvim sekmesine geçince takvimi göster
+        if (name === 'takvim') {
+            switchMain('calendar');
+        } else if (name === 'notlar') {
+            switchMain('notes');
+        }
+    }
+
+    // Ana alan geçişi
+    function switchMain(area) {
+        activeMain = area;
+        document.querySelector('.main-content').style.display     = area === 'calendar' ? 'flex' : 'none';
+        document.getElementById('notes-area').style.display       = area === 'notes'    ? 'flex' : 'none';
+        document.getElementById('account-area').style.display     = area === 'account'  ? 'flex' : 'none';
+
+        if (area === 'notes') renderNotesArea();
+        if (area === 'account') loadAccountInfo();
     }
 
     // Çıkış
@@ -69,9 +102,9 @@
 <script src="/js/calendar.js"></script>
 <script src="/js/tasks.js"></script>
 <script src="/js/notes.js"></script>
+<script src="/js/account.js"></script>
 
 <script>
-    // Başlat
     window.onload = () => {
         const today = new Date().toISOString().split('T')[0];
         document.getElementById('taskStartDate').value = today;
@@ -82,11 +115,15 @@
         document.getElementById('noteInput')
             .addEventListener('keypress', e => { if (e.key === 'Enter') addNote(); });
 
+        document.getElementById('note-edit-modal')
+            .addEventListener('click', function(e) {
+                if (e.target === this) closeNoteEditModal();
+            });
+
         loadTasks();
         loadNotes();
     };
 
-    // PWA Service Worker
     if ('serviceWorker' in navigator) {
         window.addEventListener('load', () => {
             navigator.serviceWorker.register('/sw.js')
