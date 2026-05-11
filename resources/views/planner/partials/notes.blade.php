@@ -26,7 +26,4 @@
         <div class="note-list" id="noteList"></div>
 
     </div>
-
-    {{-- Çıkış şeridi --}}
-    <button onclick="handleLogout()" class="logout-strip">🚪 Çıkış Yap</button>
 </div>

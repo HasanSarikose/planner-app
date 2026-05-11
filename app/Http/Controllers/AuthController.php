@@ -29,4 +29,23 @@ class AuthController extends Controller
         $request->session()->regenerateToken();
         return response()->json(['success' => true, 'redirect' => '/login']);
     }
+
+    public function register(Request $request)
+    {
+        $request->validate([
+            'username' => 'required|unique:users,name|min:3|max:30',
+            'password' => 'required|min:6|confirmed',
+        ]);
+
+        $user = \App\Models\User::create([
+            'name'     => $request->username,
+            'email'    => $request->username . '@planner.local',
+            'password' => \Illuminate\Support\Facades\Hash::make($request->password),
+        ]);
+
+        Auth::login($user);
+        $request->session()->regenerate();
+
+        return response()->json(['success' => true, 'redirect' => '/planner']);
+    }
 }

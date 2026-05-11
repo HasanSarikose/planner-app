@@ -16,6 +16,11 @@ Route::get('/login', function () {
 
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
+Route::get('/register', function () {
+    return auth()->check() ? redirect('/planner') : view('auth.register');
+})->name('register');
+
+Route::post('/register', [AuthController::class, 'register']);
 
 Route::middleware('auth')->group(function () {
     Route::get('/planner', [TaskController::class, 'index']);

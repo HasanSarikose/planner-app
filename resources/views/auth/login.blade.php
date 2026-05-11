@@ -32,6 +32,9 @@
     </div>
     <button onclick="handleLogin()">Giriş Yap</button>
     <div id="error-msg">❌ Bilgiler hatalı, tekrar dene.</div>
+    <div class="login-link" style="text-align:center; margin-top:18px; font-size:13px; color:#95a5a6;">
+        Hesabın yok mu? <a href="/register" style="color:#4a90e2; font-weight:600; text-decoration:none;">Kayıt Ol</a>
+    </div>
 </div>
 
 <script>
