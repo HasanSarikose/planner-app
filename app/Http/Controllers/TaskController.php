@@ -13,39 +13,36 @@ class TaskController extends Controller
 
     // 2. Tüm görevleri JSON olarak ver (JavaScript buraya soracak)
     public function getTasks() {
-        return response()->json(Task::all());
+        return response()->json(
+            Task::where('user_id', auth()->id())->get()
+        );
     }
 
-    // 3. Yeni görev kaydet
     public function store(Request $request) {
         $task = Task::create([
-            'title' => $request->title,
+            'user_id'    => auth()->id(),
+            'title'      => $request->title,
             'start_date' => $request->startDate,
-            'end_date' => $request->endDate,
-            'color' => $request->color,
+            'end_date'   => $request->endDate,
+            'color'      => $request->color,
         ]);
         return response()->json($task);
     }
 
-    // 4. Görev sil
     public function destroy($id) {
-        Task::destroy($id);
+        Task::where('id', $id)->where('user_id', auth()->id())->delete();
         return response()->json(['success' => true]);
     }
 
-    // 5. Görev Güncelle (Düzenle)
     public function update(Request $request, $id) {
-        $task = Task::find($id);
-        if($task) {
-            $task->update([
-                'title' => $request->title,
-                'start_date' => $request->startDate,
-                'end_date' => $request->endDate,
-                'color' => $request->color,
-            ]);
-            return response()->json($task);
-        }
-        return response()->json(['success' => false], 404);
+        $task = Task::where('id', $id)->where('user_id', auth()->id())->firstOrFail();
+        $task->update([
+            'title'      => $request->title,
+            'start_date' => $request->startDate,
+            'end_date'   => $request->endDate,
+            'color'      => $request->color,
+        ]);
+        return response()->json($task);
     }
 
 }
